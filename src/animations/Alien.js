@@ -1,8 +1,8 @@
-import React from 'react'
+import * as React from 'react'
+import { ANIMATION_DURATION } from '../constants'
 import alien from '../images/alien.png'
 import posed from 'react-pose'
 import styled from 'styled-components'
-import { ANIMATION_DURATION } from '../constants'
 
 const alienConfig = {
   left: {
@@ -13,7 +13,7 @@ const alienConfig = {
   right: {
     transition: { duration: ANIMATION_DURATION / 2 },
     rotateY: -180,
-    x: window.innerWidth + 600,
+    x: window.innerWidth + 1000,
     y: '40vh',
   },
 }

@@ -1,6 +1,6 @@
 import * as React from 'react'
-import styled, { keyframes } from 'styled-components'
 import { randomValue } from './utils/randomValue'
+import styled, { keyframes } from 'styled-components'
 
 const blink = keyframes`
   0% {

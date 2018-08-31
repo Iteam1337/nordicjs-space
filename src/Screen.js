@@ -1,6 +1,6 @@
-import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import * as React from 'react'
 import { randomInt } from './utils/randomValue'
+import styled, { keyframes } from 'styled-components'
 
 const glitch = keyframes`
 ${[...Array(10).keys()].map(i => {
@@ -12,7 +12,7 @@ ${[...Array(10).keys()].map(i => {
 
 const Glitch = styled.div`
   color: #fff;
-  font-size: 24px;
+  font-size: 60px;
   position: absolute;
   text-align: center;
   left: 50%;

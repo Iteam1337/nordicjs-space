@@ -1,8 +1,8 @@
-import React from 'react'
-import posed from 'react-pose'
-import styled from 'styled-components'
-import spaceship from '../images/spaceship.png'
+import * as React from 'react'
 import { ANIMATION_DURATION } from '../constants'
+import posed from 'react-pose'
+import spaceship from '../images/spaceship.png'
+import styled from 'styled-components'
 
 const spaceshipConfig = {
   left: {

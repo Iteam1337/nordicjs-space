@@ -9,7 +9,7 @@
     }
   },
   "extends": ["plugin:react/recommended"],
-  "plugins": ["react"],
+  "plugins": ["react", "sort-imports-es6-autofix"],
   "env": {
     "browser": true
   },
@@ -29,6 +29,14 @@
     "space-before-blocks": ["error", "always"],
     "space-before-function-paren": ["error", "always"],
     "semi": ["error", "never"],
+    "sort-imports-es6-autofix/sort-imports-es6": [
+      2,
+      {
+        "ignoreCase": false,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+      }
+    ],
     "quotes": ["error", "single"]
   }
 }

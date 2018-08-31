@@ -1,8 +1,8 @@
-import React from 'react'
-import rocket from '../images/raket.svg'
-import posed from 'react-pose'
-import styled from 'styled-components'
+import * as React from 'react'
 import { ANIMATION_DURATION } from '../constants'
+import posed from 'react-pose'
+import rocket from '../images/raket.svg'
+import styled from 'styled-components'
 
 const rocketConfig = {
   left: {
@@ -12,7 +12,7 @@ const rocketConfig = {
   },
   right: {
     transition: { duration: ANIMATION_DURATION / 2 },
-    x: window.innerWidth + 600,
+    x: window.innerWidth + 1000,
     y: '100px',
   },
 }

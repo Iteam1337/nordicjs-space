@@ -2,23 +2,32 @@
   "name": "nordicjs-lottery",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-pose": "^2.1.2",
-    "react-scripts": "1.1.4",
-    "reason-react": "^0.4.2",
-    "styled-components": "^3.3.3"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "node server/server.js"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "cors": "^2.8.4",
+    "dedent": "^0.7.0",
+    "express": "4.16.3",
+    "fireworks-canvas": "^2.2.0",
+    "random-js": "1.0.8",
+    "react": "16.4.1",
+    "react-dom": "16.4.1",
+    "react-pose": "2.1.2",
+    "react-scripts": "1.1.4",
+    "reason-react": "0.4.2",
+    "styled-components": "3.3.3",
+    "uuid": "3.3.2"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.5",
-    "eslint": "^5.0.1",
-    "eslint-plugin-react": "^7.10.0"
+    "babel-eslint": "8.2.5",
+    "eslint": "5.0.1",
+    "eslint-plugin-react": "7.10.0",
+    "eslint-plugin-sort-imports-es6-autofix": "^0.3.0"
   }
 }

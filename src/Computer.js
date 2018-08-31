@@ -1,8 +1,8 @@
-import React from 'react'
+import * as React from 'react'
+import Screen from './Screen'
 import dator from './images/dator.svg'
 import hourglass from './images/hourglass.gif'
 import styled, { keyframes } from 'styled-components'
-import Screen from './Screen'
 
 const sway = keyframes`
   0% {
@@ -66,8 +66,9 @@ const Loading = styled.img`
 `
 
 const LoadingIndicator = styled.div`
-  animation: ${blink} infinite ${p => p.isLoading ? '200ms' : '1s'} ease-in-out;
-  background-color: #54FBAC;
+  animation: ${blink} infinite ${p => (p.isLoading ? '200ms' : '1s')}
+    ease-in-out;
+  background-color: #54fbac;
   bottom: 120px;
   border-radius: 30px;
   height: 8px;
@@ -79,17 +80,17 @@ const LoadingIndicator = styled.div`
 
 const LoadingIndicatorBlue = LoadingIndicator.extend`
   animation-delay: 500ms;
-  background-color: #668CFF;
+  background-color: #668cff;
   right: 395px;
 `
 
 const LoadingIndicatorRed = LoadingIndicator.extend`
   animation-delay: 1s;
-  background-color: #FF3B5C;
+  background-color: #ff3b5c;
   right: 370px;
 `
 
-const Computer = ({ isLoading }) => {
+const Computer = ({ isLoading, text }) => {
   return (
     <Wrap>
       {isLoading && <Loading src={hourglass} />}
@@ -97,7 +98,7 @@ const Computer = ({ isLoading }) => {
       <LoadingIndicator isLoading={isLoading} />
       <LoadingIndicatorBlue isLoading={isLoading} />
       <LoadingIndicatorRed isLoading={isLoading} />
-      {!isLoading && <Screen text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque libero facilis quaerat consequuntur soluta. Perspiciatis maiores natus, quibusdam nihil consequatur neque, earum nemo consectetur quae, officia error nesciunt aperiam odio?" />}
+      {!isLoading && <Screen text={text} />}
     </Wrap>
   )
 }
