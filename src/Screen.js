@@ -1,6 +1,9 @@
 import * as React from 'react'
 import { randomInt } from './utils/randomValue'
+import nitlott from './images/nitlott.gif'
 import styled, { keyframes } from 'styled-components'
+import trostpris from './images/trostpris.gif'
+import vinst from './images/vinst.gif'
 
 const glitch = keyframes`
 ${[...Array(10).keys()].map(i => {
@@ -12,7 +15,7 @@ ${[...Array(10).keys()].map(i => {
 
 const Glitch = styled.div`
   color: #fff;
-  font-size: 60px;
+  font-size: 48px;
   position: absolute;
   text-align: center;
   left: 50%;
@@ -47,8 +50,38 @@ const Glitch = styled.div`
   }
 `
 
-const Screen = ({ text }) => {
-  return <Glitch data-text={text}>{text}</Glitch>
+const CatGIF = styled.img`
+  position: absolute;
+  bottom: 470px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+`
+
+const Screen = ({ text, typeOfWin }) => {
+  let catGif = ''
+
+  switch (typeOfWin) {
+    case 'dud':
+      catGif = nitlott
+      break
+    case 'small':
+      catGif = trostpris
+      break
+    case 'large':
+      catGif = vinst
+      break
+    default:
+      catGif = ''
+      break
+  }
+
+  return (
+    <div>
+      <Glitch data-text={text}>{text}</Glitch>
+      <CatGIF src={catGif} />
+    </div>
+  )
 }
 
 export default Screen

@@ -9,7 +9,7 @@ const writeFile = util.promisify(fs.writeFile)
 const { displayStats, shuffle } = require('./utils')
 const uuid = require('uuid/v4')
 
-let SPINS_LEFT = 100
+let SPINS_LEFT = 250
 const PRIZES = `${__dirname}/prizes.json`
 
 const app = express()
@@ -36,7 +36,7 @@ app.get('/', async (req, res, next) => {
     return next()
   }
 
-  const blankPrizes = [...Array(NUMBER_OF_BLANK_PRIZES)].map(() => ({
+  const blankPrizes = [...Array(NUMBER_OF_BLANK_PRIZES).keys()].map(() => ({
     item: 'Nitlott',
     id: uuid(),
     found: false,

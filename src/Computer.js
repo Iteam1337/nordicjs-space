@@ -90,7 +90,7 @@ const LoadingIndicatorRed = LoadingIndicator.extend`
   right: 370px;
 `
 
-const Computer = ({ isLoading, text }) => {
+const Computer = ({ isLoading, text, typeOfWin }) => {
   return (
     <Wrap>
       {isLoading && <Loading src={hourglass} />}
@@ -98,7 +98,7 @@ const Computer = ({ isLoading, text }) => {
       <LoadingIndicator isLoading={isLoading} />
       <LoadingIndicatorBlue isLoading={isLoading} />
       <LoadingIndicatorRed isLoading={isLoading} />
-      {!isLoading && <Screen text={text} />}
+      {!isLoading && <Screen text={text} typeOfWin={typeOfWin} />}
     </Wrap>
   )
 }

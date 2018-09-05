@@ -35,17 +35,20 @@ const FireworksCanvas = styled.div`
   top: 0;
 `
 
-const INITIAL_TEXT = ''
+const INITIAL_TEXT = 'Press the button'
 
 class App extends React.Component {
-  fireworksCanvas = React.createRef()
   state = {
     alien: 'left',
     isLoading: false,
     rocket: 'left',
     spaceship: 'left',
     text: INITIAL_TEXT,
+    typeOfWin: '',
   }
+
+  spaceTimer = null
+  fireworks = null
 
   componentDidMount () {
     this.randomAnimation()
@@ -81,14 +84,18 @@ class App extends React.Component {
       setTimeout(() => {
         let text = ''
         let win = false
-        let typeOfWin = 'small'
+        let typeOfWin = 'dud'
+
+        document.addEventListener('keydown', this.resetSpace)
 
         switch (data.item) {
           case 'Nitlott':
             text = 'Sorry, no price for you :('
+            typeOfWin = 'dud'
             break
           case 'Tröstpris':
             text = 'Woohoo! The TRÖSTPRIS is yours!'
+            typeOfWin = 'small'
             win = true
             break
           case 'Solcellsladdare':
@@ -102,23 +109,36 @@ class App extends React.Component {
         }
 
         if (win) {
-          this.fireworks(typeOfWin)
+          this.startFireworks(typeOfWin)
         }
 
         this.setState(() => ({
           text,
+          typeOfWin,
           isLoading: false,
         }))
 
-        setTimeout(() => {
+        this.spaceTimer = setTimeout(() => {
+          document.removeEventListener('keydown', this.resetSpace)
           document.addEventListener('keydown', this.handleSpace)
           this.resetText()
         }, 20000)
-      }, 5000)
+      }, 4000)
     }
   }
 
-  fireworks = typeOfWin => {
+  resetSpace = () => {
+    clearInterval(this.spaceTimer)
+    document.addEventListener('keydown', this.handleSpace)
+
+    if (this.fireworks) {
+      this.fireworks.stop()
+    }
+
+    this.resetText()
+  }
+
+  startFireworks = typeOfWin => {
     const options = {
       maxRockets: typeOfWin === 'small' ? 4 : 20,
       rocketSpawnInterval: 100,
@@ -127,15 +147,15 @@ class App extends React.Component {
       explosionChance: 10,
     }
 
-    const fireworks = new Fireworks(
+    this.fireworks = new Fireworks(
       document.getElementById('fireworks'),
       options
     )
 
-    fireworks.start()
+    this.fireworks.start()
 
     setTimeout(() => {
-      fireworks.stop()
+      this.fireworks.stop()
 
       const canvas = document.querySelector('#fireworks canvas')
 
@@ -146,29 +166,24 @@ class App extends React.Component {
   resetText = () => {
     this.setState({
       text: INITIAL_TEXT,
+      typeOfWin: '',
     })
   }
 
   toggleAnimation = animation => {
-    // this.setState(state => ({
-    //   alien: state.alien === 'right' ? 'left' : 'right',
-    //   rocket: state.rocket === 'right' ? 'left' : 'right',
-    //   spaceship: state.spaceship === 'right' ? 'left' : 'right',
-    // }))
-
     this.setState(state => ({
       [animation]: state[animation] === 'right' ? 'left' : 'right',
     }))
   }
 
   render () {
-    const { alien, isLoading, rocket, spaceship, text } = this.state
+    const { alien, isLoading, rocket, spaceship, text, typeOfWin } = this.state
 
     return (
       <Wrap>
         <FireworksCanvas id="fireworks" />
         <Mute onClick={mute} />
-        <Computer isLoading={isLoading} text={text} />
+        <Computer isLoading={isLoading} text={text} typeOfWin={typeOfWin} />
 
         <Alien pose={alien} />
         <Rocket pose={rocket} />
